@@ -1,28 +1,90 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+html body {
+  padding: 0px;
+  margin: 0px;
+}
+
+#footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+#previous-button {
+  height: 40px;
+  width: 140px;
+  border: 1px solid #3185f7;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  background-color: #ffffff;
+}
+
+#previous-button:hover {
+  color: #ffffff;
+  transition-duration: 0.5s;
+  background-color: #3185f7;
+}
+
+#previous-button:not(:hover) {
+  transition-duration: 0.6s;
+}
+
+#next-button-disabled {
+  height: 40px;
+  width: 140px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #bdbdbd;
+}
+
+#next-button-enabled {
+  height: 40px;
+  width: 140px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #3185f7;
+}
+
+#next-button-enabled:hover {
+  color: #ffffff;
+  transition-duration: 0.5s;
+  background-color: #3185f7;
+}
+
+#next-button-enabled:not(:hover) {
+  transition-duration: 0.6s;
 }
 </style>
