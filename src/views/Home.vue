@@ -93,8 +93,8 @@ export default {
     },
     goToAddCard() {
       this.$store.commit("changeStep", 1);
-      this.$store.commit("createNewCard");
       // BUG You are creating the card too soon, then empty card.
+      this.$store.commit("createNewCard");
       this.$router.push({ name: "addCard" });
     },
   },

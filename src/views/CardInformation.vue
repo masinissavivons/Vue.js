@@ -18,7 +18,6 @@
       </button>
 
       <!-- TODO How can you write this shortly ? -->
-      <!-- WHY are you using id attribute ? To do what ? -->
 
       <button
         v-if="

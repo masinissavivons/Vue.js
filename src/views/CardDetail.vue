@@ -1,6 +1,6 @@
 <template>
   <div id="main-div">
-    <div id="center-div">
+    <div v-if="card" id="center-div">
       <div id="card">
         <div id="card-name">
           <!-- NOTE useless use of this -->
@@ -21,7 +21,11 @@
 
               <h3>Tags:</h3>
               <!-- WHY - Can you explain the concept of key ? -->
-              <div v-for="tag in card.tags" v-bind:key="tag">
+              <div v-for="tag in card.tags" v-bind:key="`${tag}_ tag1`">
+                <p>{{ tag }}</p>
+              </div>
+
+              <div v-for="tag in card.tags" v-bind:key="`${tag}_ tag2`">
                 <p>{{ tag }}</p>
               </div>
             </div>
@@ -82,15 +86,12 @@ h1 {
 
 #main-div {
   width: 100%;
-  height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   background-color: #ffffff;
 }
 
 #center-div {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,7 +99,6 @@ h1 {
 }
 
 #card {
-  height: 100%;
   width: 50%;
   display: flex;
   flex-direction: column;
