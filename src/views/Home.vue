@@ -26,16 +26,24 @@
       <button id="toCard" @click="goToCardDetail(card.id)">See card</button>
 
       <div id="chips">
-      
-      <v-chip
-      text-color = "white"
-        :color="tag==='logistique'?'#50B7DA'
-        :tag==='production'?'#F08D8D'
-        :tag==='qualité'?'#82E07E'
-        :tag==='maintenance'?'#F3AB6E':''"
-      v-for="tag in card.tags" v-bind:key="tag" class="cards-chip">{{tag}}
-      </v-chip>
-
+        <v-chip
+          text-color="white"
+          :color="
+            tag === 'logistique'
+              ? '#50B7DA'
+              : tag === 'production'
+              ? '#F08D8D'
+              : tag === 'qualité'
+              ? '#82E07E'
+              : tag === 'maintenance'
+              ? '#F3AB6E'
+              : ''
+          "
+          v-for="tag in card.tags"
+          v-bind:key="tag"
+          class="cards-chip"
+          >{{ tag }}
+        </v-chip>
       </div>
     </div>
   </div>
@@ -60,11 +68,12 @@ export default {
     };
   },
   mounted() {
-    console.log('step home: ', this.$store.state.step);
+    console.log("step home: ", this.$store.state.step);
     this.$store.commit("initiateStep");
     this.cardsInStore = this.$store.state.card;
   },
   methods: {
+    // NOTE Can you make the same with a computed ?
     selectFilter(item) {
       if (item === "all") {
         this.cardsInStore = this.$store.state.card;
@@ -75,13 +84,17 @@ export default {
       }
     },
     goToCardDetail(id) {
-      this.$router.push({ name: "cardDetail", params: {
-        id: id}
+      this.$router.push({
+        name: "cardDetail",
+        params: {
+          id: id,
+        },
       });
     },
     goToAddCard() {
       this.$store.commit("changeStep", 1);
       this.$store.commit("createNewCard");
+      // BUG You are creating the card too soon, then empty card.
       this.$router.push({ name: "addCard" });
     },
   },
@@ -149,7 +162,7 @@ h1 {
 #toCard {
   width: 100px;
   height: 40px;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 5px;
   background-color: #000000;
 }

@@ -17,13 +17,22 @@
         <i class="fa-solid fa-angle-left"></i>Précédent
       </button>
 
-      <button v-if="fileUploadedSuccessFromChild === true
-      && inputFieldFromChild === true
-      && tagsSentFromChild === true" id="next-button-enabled" @click="goToSelectTrigger()" ref="next">
+      <!-- TODO How can you write this shortly ? -->
+      <!-- WHY are you using id attribute ? To do what ? -->
+
+      <button
+        v-if="
+          fileUploadedSuccessFromChild === true &&
+          inputFieldFromChild === true &&
+          tagsSentFromChild === true
+        "
+        id="next-button-enabled"
+        @click="goToSelectTrigger()"
+        ref="next"
+      >
         Suivant
       </button>
       <button v-else id="next-button-disabled" disabled>Suivant</button>
-
     </div>
   </div>
 </template>
@@ -52,11 +61,13 @@ export default {
     };
   },
   mounted() {
-    console.log('step card Informaton: ', this.$store.state.step);
+    console.log("step card Informaton: ", this.$store.state.step);
     this.$store.commit("changeStep", 2);
-    if (this.$store.state.card[this.$store.state.card.length-1].file !== null &&
-    this.$store.state.card[this.$store.state.card.length-1].name !== null &&
-    this.$store.state.card[this.$store.state.card.length-1].tags !== null) {
+    if (
+      this.$store.state.card[this.$store.state.card.length - 1].file !== null &&
+      this.$store.state.card[this.$store.state.card.length - 1].name !== null &&
+      this.$store.state.card[this.$store.state.card.length - 1].tags !== null
+    ) {
       this.fileUploadedSuccessFromChild = true;
       this.inputFieldFromChild = true;
       this.tagsSentFromChild = true;
@@ -71,16 +82,16 @@ export default {
     },
     handleInput(data) {
       if (data === true) {
-      this.inputFieldFromChild = true;
-      } else if ( data === false) {
-      this.inputFieldFromChild = false;
+        this.inputFieldFromChild = true;
+      } else if (data === false) {
+        this.inputFieldFromChild = false;
       }
     },
     tagsReceived(data) {
       if (data === true) {
-      this.tagsSentFromChild = true;
-      } else if ( data === false) {
-      this.tagsSentFromChild = false;
+        this.tagsSentFromChild = true;
+      } else if (data === false) {
+        this.tagsSentFromChild = false;
       }
     },
     goToSelectTrigger() {
@@ -92,6 +103,7 @@ export default {
         this.$store.commit("changeStep", 3);
         this.$router.push({ name: "selectTrigger" });
       } else {
+        // BUG - This alert is never trigger.
         alert("Please complete all the fields");
       }
     },

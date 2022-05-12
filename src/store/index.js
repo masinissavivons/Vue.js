@@ -4,6 +4,16 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 const state = {
+  // NOTE better naming => cardS
+  currentCardEdit: {
+    id: null,
+    format: null,
+    file: null,
+    name: null,
+    tags: [],
+    trigger: null,
+    date: null,
+  },
   card: [
     {
       id: 0,
@@ -12,6 +22,7 @@ const state = {
       name: "Carte de production du lot de poire",
       tags: ["production"],
       trigger: "Manuel",
+      // WHY use this format of date ?
       date: "2022-05-13",
     },
   ],

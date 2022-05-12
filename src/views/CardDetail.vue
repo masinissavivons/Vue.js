@@ -1,12 +1,12 @@
 <template>
   <div id="main-div">
-  
     <div id="center-div">
       <div id="card">
         <div id="card-name">
+          <!-- NOTE useless use of this -->
           <h1>{{ this.card.name }}</h1>
         </div>
-        
+
         <div id="card-information">
           <div class="section">
             <h2>Format:</h2>
@@ -20,6 +20,7 @@
               <div></div>
 
               <h3>Tags:</h3>
+              <!-- WHY - Can you explain the concept of key ? -->
               <div v-for="tag in card.tags" v-bind:key="tag">
                 <p>{{ tag }}</p>
               </div>
@@ -41,9 +42,7 @@
           <i class="fa-solid fa-angle-left"></i>Précédent
         </button>
       </div>
-
     </div>
-
   </div>
 </template>
 
@@ -52,15 +51,21 @@ export default {
   name: "cardDetail",
   data() {
     return {
+      // WHY Useless data
       cardId: null,
+      // BUG Error in console because no data when the page start to mount.
+      // TypeError: Cannot read properties of null (
       card: null,
     };
   },
   mounted() {
+    // NOTE Better use of computed.
     this.card = this.$store.state.card[this.$route.params.id];
   },
   methods: {
     goBack() {
+      // NOTE Bad use of go back
+      // BUG Create bug with navigation
       this.$router.go(-1);
     },
   },
@@ -68,6 +73,8 @@ export default {
 </script>
 
 <style scoped>
+/* NOTE Pref CSS Heritage */
+/* NOTE Code repeat */
 h1 {
   font-weight: 900;
   margin: 0 0 2em;
@@ -87,7 +94,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
 #card {
@@ -97,13 +104,12 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 0 50px 0 ;
-
+  margin: 0 0 50px 0;
 }
 
 #card-name {
   width: 100%;
-  margin: 50px 0 0 0 ;
+  margin: 50px 0 0 0;
   text-align: center;
 }
 
@@ -112,7 +118,7 @@ h1 {
 }
 
 .section {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 /*    MEDIA QUERIES   */

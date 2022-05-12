@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      {{ $store.state.currentCardEdit.name }}
       <router-view />
     </v-main>
   </v-app>
